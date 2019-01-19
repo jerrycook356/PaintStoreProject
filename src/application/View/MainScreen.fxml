@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.View.MainScreenController">
+   <left>
+      <SplitPane dividerPositions="0.21249286936679976" orientation="VERTICAL" prefHeight="703.0" prefWidth="201.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="146.0" prefWidth="217.0">
+               <children>
+                  <Label layoutX="14.0" layoutY="23.0" prefHeight="18.0" prefWidth="165.0" text="    Transaction History Search" textAlignment="CENTER" textFill="#df0a0a" />
+                  <TextField fx:id="searchByTransactionIDTextField" layoutX="14.0" layoutY="61.0" text="Search  by Transaction ID" />
+                  <Button fx:id="searchByTransactionIDTextFieldSearchButton" layoutX="63.0" layoutY="93.0" mnemonicParsing="false" text="Search" />
+                  <Label fx:id="testLabel" layoutX="35.0" layoutY="119.0" prefHeight="18.0" prefWidth="121.0" text="text to change" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <SplitPane dividerPositions="0.0785244704163623" layoutX="14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="549.6" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Label layoutX="14.0" layoutY="12.0" prefHeight="18.0" prefWidth="169.0" text="Transaction History" textAlignment="JUSTIFY" textFill="#ed0909" />
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <ListView layoutX="-1.0" layoutY="14.0" prefHeight="501.6" prefWidth="198.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </left>
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <right>
+      <SplitPane dividerPositions="0.5, 0.5" orientation="VERTICAL" prefHeight="774.0" prefWidth="309.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <SplitPane dividerPositions="0.11780104712041885" layoutX="50.0" layoutY="81.0" orientation="VERTICAL" prefHeight="383.2" prefWidth="308.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                    </items>
+                  </SplitPane>
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+            <Separator prefWidth="200.0" />
+        </items>
+      </SplitPane>
+   </right>
+   <center>
+      <SplitPane dividerPositions="0.3197158081705151" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" BorderPane.alignment="CENTER">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <SplitPane dividerPositions="0.22845953002610966" layoutX="246.0" layoutY="42.0" prefHeight="244.0" prefWidth="768.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <SplitPane dividerPositions="0.18302828618968386" layoutX="46.0" layoutY="21.0" orientation="VERTICAL" prefHeight="242.4" prefWidth="176.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="12.0" prefHeight="20.0" prefWidth="142.0" text="Customer Search" textAlignment="CENTER" textFill="#e20303">
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="194.0" prefWidth="141.0">
+                                       <children>
+                                          <TextField fx:id="customerIdSearchTextField" layoutX="14.0" layoutY="20.0" prefHeight="26.0" prefWidth="87.0" promptText="Enter Id" />
+                                          <Button fx:id="customerIdSearchButton" layoutX="19.0" layoutY="60.0" mnemonicParsing="false" text="Search" />
+                                          <Label layoutX="20.0" layoutY="97.0" prefHeight="18.0" prefWidth="50.0" text="Status:" />
+                                          <Label fx:id="customerStatusLabel" layoutX="70.0" layoutY="97.0" prefHeight="18.0" prefWidth="73.0" />
+                                          <Button fx:id="addCustomerButton" disable="true" layoutX="19.0" layoutY="134.0" mnemonicParsing="false" text="Add" />
+                                          <Button fx:id="cancelAddCustomerButton" disable="true" layoutX="91.0" layoutY="134.0" mnemonicParsing="false" text="Cancel" />
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                           <children>
+                              <SplitPane dividerPositions="0.35494880546075086" layoutX="21.0" layoutY="30.0" prefHeight="242.4" prefWidth="588.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <SplitPane dividerPositions="0.18006700167504186" layoutX="14.0" layoutY="20.0" orientation="VERTICAL" prefHeight="240.8" prefWidth="205.6" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <items>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                   <children>
+                                                      <Label layoutX="14.0" layoutY="12.0" prefHeight="18.0" prefWidth="179.0" text="Customer Details" textFill="#e80606">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </AnchorPane>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                   <children>
+                                                      <Label layoutX="14.0" layoutY="14.0" text="Id:" textFill="#e20b0b" />
+                                                      <Label layoutX="14.0" layoutY="44.0" text="Name:" textFill="#f20303" />
+                                                      <Label layoutX="14.0" layoutY="71.0" text="# Sales:" textFill="#f20707" />
+                                                      <Label layoutX="14.0" layoutY="96.0" text="Discount:" textFill="#e80303" />
+                                                      <Label layoutX="14.0" layoutY="131.0" text="Discount Amount:" textFill="#f20606" />
+                                                      <Label fx:id="customerResultIdLabel" layoutX="82.0" layoutY="14.0" prefHeight="18.0" prefWidth="112.0" />
+                                                      <Label fx:id="customerResultNameLabel" layoutX="82.0" layoutY="44.0" prefHeight="18.0" prefWidth="115.0" />
+                                                      <Label fx:id="customerResultNumberSalesLabel" layoutX="82.0" layoutY="71.0" prefHeight="18.0" prefWidth="115.0" />
+                                                      <Label fx:id="customerResultDiscountLabel" layoutX="82.0" layoutY="96.0" prefHeight="18.0" prefWidth="114.0" />
+                                                      <Label fx:id="customerResultDiscountAmount" layoutX="124.0" layoutY="131.0" prefHeight="18.0" prefWidth="74.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                            </items>
+                                          </SplitPane>
+                                       </children>
+                                    </AnchorPane>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                       <children>
+                                          <SplitPane dividerPositions="0.18006700167504186" layoutX="48.0" layoutY="20.0" orientation="VERTICAL" prefHeight="240.8" prefWidth="375.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <items>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                   <children>
+                                                      <Label layoutX="14.0" layoutY="12.0" prefHeight="18.0" prefWidth="348.0" text="Customer Order" textAlignment="CENTER" textFill="#f00808">
+                                                         <font>
+                                                            <Font size="14.0" />
+                                                         </font>
+                                                      </Label>
+                                                   </children>
+                                                </AnchorPane>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                   <children>
+                                                      <Label layoutX="14.0" layoutY="23.0" text="Item Id:" textFill="#ed0707" />
+                                                      <Label layoutX="14.0" layoutY="56.0" text="Description:" textFill="#e20909" />
+                                                      <Label layoutX="14.0" layoutY="88.0" text="Price: $" textFill="#f00808" />
+                                                      <Label layoutX="14.0" layoutY="119.0" text="Quantity:" textFill="#ea0404" />
+                                                      <Button fx:id="customerCartAddButton" layoutX="177.0" layoutY="154.0" mnemonicParsing="false" text="Add" />
+                                                      <Button fx:id="customerCartClearButton" layoutX="258.0" layoutY="154.0" mnemonicParsing="false" text="Clear" />
+                                                      <Label fx:id="customerCartDescriptionLabel" layoutX="96.0" layoutY="56.0" prefHeight="18.0" prefWidth="270.0" />
+                                                      <Label fx:id="customerCartPriceLabel" layoutX="96.0" layoutY="88.0" prefHeight="18.0" prefWidth="63.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                            </items>
+                                          </SplitPane>
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children></AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+               <children>
+                  <SplitPane dividerPositions="0.12490392006149116" layoutX="60.0" layoutY="-24.0" orientation="VERTICAL" prefHeight="546.0" prefWidth="768.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="57.0" prefWidth="827.0">
+                           <children>
+                              <Label layoutX="281.0" layoutY="23.0" text="Item Selection" textAlignment="CENTER" textFill="#e20909">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                    </items>
+                  </SplitPane>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </center>
+</BorderPane>
