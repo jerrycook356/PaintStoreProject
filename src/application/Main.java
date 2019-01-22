@@ -1,11 +1,12 @@
 package application;
 	
 
+import application.Model.DatabaseHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 
 public class Main extends Application {
@@ -15,11 +16,14 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) {
+		DatabaseHelper dh = new DatabaseHelper();
+		dh.setUpItemTable();
+		dh.setUpCustomerTable();
 		try {
 			this.primaryStage = primaryStage;
 			this.primaryStage.setTitle("The Greatest Paint Store: Main Screen");
 			
-			
+			System.out.println("after setup");
 			initMainLayout();
 		}catch(Exception e) {
 			e.printStackTrace();

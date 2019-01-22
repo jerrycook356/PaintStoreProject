@@ -6,8 +6,9 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -68,19 +69,68 @@
       </MenuBar>
    </top>
    <right>
-      <SplitPane dividerPositions="0.5, 0.5" orientation="VERTICAL" prefHeight="774.0" prefWidth="309.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="774.0" prefWidth="309.0" BorderPane.alignment="CENTER">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
                   <SplitPane dividerPositions="0.11780104712041885" layoutX="50.0" layoutY="81.0" orientation="VERTICAL" prefHeight="383.2" prefWidth="308.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Label layoutX="65.0" layoutY="13.0" text="Total" textAlignment="CENTER" textFill="#df0707">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children></AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="283.0" prefWidth="306.0">
+                           <children>
+                              <Label layoutX="25.0" layoutY="14.0" text="# Items" textFill="#ea0606" />
+                              <Label layoutX="25.0" layoutY="50.0" text="Sub Total:" textFill="#d70808" />
+                              <Label layoutX="25.0" layoutY="91.0" text="Discount(subtract):" textFill="#e80707" />
+                              <Label layoutX="25.0" layoutY="124.0" text="Tax:" textFill="#f00909" />
+                              <Label layoutX="21.0" layoutY="150.0" text="Total:" textFill="#dd0909" />
+                              <Label fx:id="totalNumberOfItemsLabel" layoutX="152.0" layoutY="13.0" prefHeight="18.0" prefWidth="143.0" />
+                              <Label fx:id="totalSubTotalLabel" layoutX="153.0" layoutY="50.0" prefHeight="18.0" prefWidth="145.0" />
+                              <Label fx:id="totalDiscountLabel" layoutX="153.0" layoutY="91.0" prefHeight="18.0" prefWidth="145.0" />
+                              <Label fx:id="totalTaxLabel" layoutX="153.0" layoutY="124.0" prefHeight="18.0" prefWidth="146.0" />
+                              <Label fx:id="totalTotalLabel" layoutX="153.0" layoutY="150.0" prefHeight="18.0" prefWidth="142.0" />
+                              <Button fx:id="totalCompleteButton" disable="true" layoutX="26.0" layoutY="205.0" mnemonicParsing="false" text="Complete" />
+                              <Button fx:id="totalCancelButton" disable="true" layoutX="140.0" layoutY="205.0" mnemonicParsing="false" text="Cancel" />
+                           </children></AnchorPane>
                     </items>
                   </SplitPane>
                </children></AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-            <Separator prefWidth="200.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="420.0" prefWidth="308.0">
+               <children>
+                  <SplitPane dividerPositions="0.10209424083769633" layoutX="44.0" layoutY="41.0" orientation="VERTICAL" prefHeight="384.0" prefWidth="308.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <Label layoutX="8.0" layoutY="9.0" prefHeight="18.0" prefWidth="291.0" text="Review" textFill="#f00707">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </AnchorPane>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <SplitPane dividerPositions="0.8727810650887574" layoutX="42.0" layoutY="58.0" orientation="VERTICAL" prefHeight="340.0" prefWidth="306.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <items>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <Button fx:id="reviewRemoveButton" disable="true" layoutX="132.0" layoutY="7.0" mnemonicParsing="false" text="Remove" />
+                                       </children>
+                                    </AnchorPane>
+                                </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                    </items>
+                  </SplitPane>
+               </children></AnchorPane>
         </items>
       </SplitPane>
    </right>
@@ -202,7 +252,17 @@
                               </Label>
                            </children>
                         </AnchorPane>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <TableView fx:id="itemTableView" layoutX="148.0" layoutY="36.0" prefHeight="452.8" prefWidth="766.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columns>
+                                  <TableColumn fx:id="itemIdTableColumn" prefWidth="75.0" text="ID:" />
+                                  <TableColumn fx:id="itemDescriptionColumn" prefWidth="517.6001205444336" text="Description:" />
+                                    <TableColumn fx:id="itemPriceColumn" prefWidth="87.20001220703125" text="Price:" />
+                                    <TableColumn fx:id="quantityColumn" prefWidth="79.199951171875" text="Quantity" />
+                                </columns>
+                              </TableView>
+                           </children></AnchorPane>
                     </items>
                   </SplitPane>
                </children>
