@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.View.MainScreenController">
+<BorderPane fx:id="mainLayout" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.View.MainScreenController">
    <left>
       <SplitPane dividerPositions="0.21249286936679976" orientation="VERTICAL" prefHeight="703.0" prefWidth="201.0" BorderPane.alignment="CENTER">
         <items>
@@ -23,7 +23,7 @@
                   <Label layoutX="14.0" layoutY="23.0" prefHeight="18.0" prefWidth="165.0" text="    Transaction History Search" textAlignment="CENTER" textFill="#df0a0a" />
                   <TextField fx:id="searchByTransactionIDTextField" layoutX="14.0" layoutY="61.0" text="Search  by Transaction ID" />
                   <Button fx:id="searchByTransactionIDTextFieldSearchButton" layoutX="63.0" layoutY="93.0" mnemonicParsing="false" text="Search" />
-                  <Label fx:id="testLabel" layoutX="35.0" layoutY="119.0" prefHeight="18.0" prefWidth="121.0" text="text to change" />
+                  <Label fx:id="testLabel" layoutX="12.0" layoutY="119.0" prefHeight="18.0" prefWidth="171.0" text="text to change" />
                </children>
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -51,9 +51,10 @@
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
+               <items>
+                  <MenuItem fx:id="goToCustomer" mnemonicParsing="false" onAction="#goToCustomer" text="Customer Management" />
+                  <MenuItem fx:id="goToInventory" mnemonicParsing="false" onAction="#gotToInventory" text="Inventory Management" />
+               </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
@@ -157,11 +158,11 @@
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="194.0" prefWidth="141.0">
                                        <children>
                                           <TextField fx:id="customerIdSearchTextField" layoutX="14.0" layoutY="20.0" prefHeight="26.0" prefWidth="87.0" promptText="Enter Id" />
-                                          <Button fx:id="customerIdSearchButton" layoutX="19.0" layoutY="60.0" mnemonicParsing="false" text="Search" />
+                                          <Button fx:id="customerIdSearchButton" layoutX="19.0" layoutY="60.0" mnemonicParsing="false" onMousePressed="#customerIdSearchButtonPressed" text="Search" />
                                           <Label layoutX="20.0" layoutY="97.0" prefHeight="18.0" prefWidth="50.0" text="Status:" />
-                                          <Label fx:id="customerStatusLabel" layoutX="70.0" layoutY="97.0" prefHeight="18.0" prefWidth="73.0" />
-                                          <Button fx:id="addCustomerButton" disable="true" layoutX="19.0" layoutY="134.0" mnemonicParsing="false" text="Add" />
-                                          <Button fx:id="cancelAddCustomerButton" disable="true" layoutX="91.0" layoutY="134.0" mnemonicParsing="false" text="Cancel" />
+                                          <Label fx:id="customerStatusLabel" layoutX="57.0" layoutY="97.0" prefHeight="18.0" prefWidth="105.0" textFill="#df0909" wrapText="true" />
+                                          <Button fx:id="addCustomerButton" disable="true" layoutX="19.0" layoutY="148.0" mnemonicParsing="false" onMouseClicked="#addCustomerButtonPressed" text="Add" />
+                                          <Button fx:id="cancelAddCustomerButton" disable="true" layoutX="101.0" layoutY="148.0" mnemonicParsing="false" text="Cancel" />
                                        </children>
                                     </AnchorPane>
                                 </items>

@@ -1,58 +1,50 @@
 package application;
 	
 
+import java.io.IOException;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import application.Model.DatabaseHelper;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 
 public class Main extends Application {
 	
 	private Stage primaryStage;
-	private BorderPane MainLayout;
 	
 	@Override
-	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) throws IOException {
 		DatabaseHelper dh = new DatabaseHelper();
 		dh.setUpItemTable();
 		dh.setUpCustomerTable();
-		try {
-			this.primaryStage = primaryStage;
-			this.primaryStage.setTitle("The Greatest Paint Store: Main Screen");
-			
-			System.out.println("after setup");
-			initMainLayout();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		
+		this.primaryStage = primaryStage;
+		Parent root = FXMLLoader.load(getClass().getResource("view/MainScreen.fxml"));
+		Scene scene = new Scene(root);
+		primaryStage.setMaximized(true);
+		primaryStage.setResizable(false);
+		
+		primaryStage.setScene(scene);
+		primaryStage.show();
 		
 		
 	}
 	
-	
-	public void initMainLayout()
-	{
+	@Override
+	public void stop() {
 		try {
-			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(Main.class.getResource("view/MainScreen.fxml"));
-			MainLayout = (BorderPane)loader.load();
-			Scene scene = new Scene(MainLayout);
-			primaryStage.setMaximized(true);
-			primaryStage.setResizable(false);
-			
-			//primaryStage.setMinHeight(1280);
-			//primaryStage.minWidthProperty().bind(scene.heightProperty().multiply(1.25));
-			primaryStage.setScene(scene);
-			primaryStage.show();
-			
-		}catch(Exception e) {
+			DriverManager.getConnection("jdbc:derby:paintshopdatabase;shutdown=true");
+			System.out.println("closed");
+				   
+		}catch(SQLException e) {
 			e.printStackTrace();
+			//System.out.println("shutdown exception");
 		}
 	}
-	
 	
 	public Stage getPrimaryStage()
 	{

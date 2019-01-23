@@ -16,6 +16,9 @@ public class DatabaseHelper {
 	{
 
 	}
+	
+	//check if item table exists in the database
+	//if it does not then create it
 	public void setUpItemTable() {
 		try(Connection con = ch.getConnection())
 		{
@@ -35,6 +38,7 @@ public class DatabaseHelper {
 		}
 	}
 	
+	//create item table in the database if it does not exist
 	public void createItemTable()
 	{
 		String sql = "CREATE TABLE ITEMTABLE(ID INT NOT NULL PRIMARY KEY, DESCRIPTION VARCHAR(100),PRICE DOUBLE,"+
@@ -43,12 +47,14 @@ public class DatabaseHelper {
 		{
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.executeUpdate();
-			
+			ps.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	//check if the customer table exists in the database
+	//if not create the table
 	public void setUpCustomerTable() {
 		try(Connection con = ch.getConnection())
 		{
@@ -57,47 +63,51 @@ public class DatabaseHelper {
 			if(rs.next())
 			{
 				
-				//testTable();
+				testTable();
 			}
 			else
 			{
 				createCustomerTable();
 			}
+			rs.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	//create the customer table in the database
 	public void createCustomerTable()
 	{
-		String sql = "CREATE TABLE CUSTOMERTABLE(ID INT NOT NULL PRIMARY KEY,NAME VARCHAR(30),"+
-	             "STREET VARCHAR(30),CITY VARCHAR(30),STATE VARCHAR(30),ZIP INT,PHONENUMBER INT)";
+		
+		String sql = "CREATE TABLE CUSTOMERTABLE"
+				+ "(ID INT NOT NULL PRIMARY KEY GENERATED ALWAYS AS IDENTITY(START WITH 1 INCREMENT BY 1)"
+				+ " ,NAME VARCHAR(30),"+
+	             "STREET VARCHAR(30),CITY VARCHAR(30),STATE VARCHAR(30),ZIP INT,PHONENUMBER BIGINT,"
+	             + "NUMBEROFSALES INT)";
 		try(Connection con = ch.getConnection()){
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.executeUpdate();
-			
+			ps.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
+	//test method to test the tables in the database.
 	public void testTable()
 	{
-		String addString = "INSERT INTO ITEMTABLE VALUES(1,'HELLO',10.00,1,1,10)";
-		String addString2 = "INSERT INTO ITEMTABLE VALUES(2,'Yellow Paint 80',10.00,1,1,10)";
+		
+	/*	String addString3 = "INSERT INTO CUSTOMERTABLE VALUES(1,'jerry','street','city','ky',41230,606,1)";
+		
 		try(Connection con = ch.getConnection()){
 			Statement stmt = con.createStatement();
-			stmt.executeUpdate(addString);			
+			stmt.executeUpdate(addString3);			
 		}catch(SQLException e) {
 			e.printStackTrace();
-		}
-		try(Connection con = ch.getConnection()){
-			Statement stmt = con.createStatement();
-			stmt.executeUpdate(addString2);			
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
+		}	*/	
+		
 	}
+	//get items for the item selection setting and return to MainScreenController to fill table
 	public ObservableList<Item> getAllItems()
 	{
 		ObservableList<Item> items = FXCollections.observableArrayList();
@@ -106,8 +116,9 @@ public class DatabaseHelper {
 		
 		try(Connection con = ch.getConnection())
 		{
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(sql);
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ResultSet rs = ps.executeQuery();
 			while(rs.next())
 			{
 				Item item =new Item(rs.getInt("ID"),rs.getString("DESCRIPTION"),
@@ -116,12 +127,101 @@ public class DatabaseHelper {
 				items.add(item);
 				
 			}
-			System.out.println("size of items = "+items.size());
+			ps.close();
+			rs.close();
 			return items;
 		}catch(SQLException e) {
 			e.printStackTrace();
+			
 			return null;	
 		}
 	}
+	//get all customers for table view customer management screen
+	public ObservableList<Customer> getAllCustomers()
+	{
+		ObservableList<Customer> customers = FXCollections.observableArrayList();
+		String sql = "SELECT * FROM CUSTOMERTABLE";
+		try(Connection con = ch.getConnection()){
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				Customer customer = new Customer(rs.getInt("ID"),rs.getString("NAME"),rs.getString("STREET"),
+						rs.getString("CITY"),rs.getString("STATE"),rs.getInt("ZIP"),rs.getLong("PHONENUMBER"),
+						rs.getInt("NUMBEROFSALES"));
+				customers.add(customer);
+			}
+			ps.close();
+			rs.close();
+			return customers;
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	//returns customer back to the MainScreenController when search for customer id is pressed
+	public Customer findCustomer(String customerId) {
+		Customer customer = null;
+		int id = Integer.parseInt(customerId);
+		
+		String sql = "SELECT * FROM CUSTOMERTABLE WHERE ID =?";
+		try(Connection con = ch.getConnection()){
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1,id);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				customer = new Customer(rs.getInt("ID"),rs.getString("NAME"),
+	      				rs.getString("STREET"),rs.getString("CITY"),rs.getString("STATE"),
+	      				rs.getInt("ZIP"),rs.getLong("PHONENUMBER"),rs.getInt("NUMBEROFSALES"));	
+			}
+			
+			return customer;
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		}	
+	}
+	
+	
+	public void addCustomer(Customer customer)
+	{
+		
+		
+		String sql = "INSERT INTO CUSTOMERTABLE(NAME,STREET,CITY,STATE,ZIP,PHONENUMBER,NUMBEROFSALES)"
+				+ " VALUES(?,?,?,?,?,?,?)";
+		try(Connection con = ch.getConnection()){
+			PreparedStatement ps = con.prepareStatement(sql);
+			
+			ps.setString(1,customer.getName());
+			ps.setString(2,customer.getStreet());
+			ps.setString(3,customer.getCity());
+			ps.setString(4,customer.getState());
+			ps.setInt(5,customer.getZip());
+			ps.setLong(6,customer.getPhoneNumber());
+			ps.setInt(7,customer.getNumberOfSales());
+			
+			ps.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void removeCustomer(Customer customer) {
+		String sql = "DELETE FROM CUSTOMERTABLE WHERE ID = ?";
+		try(Connection con = ch.getConnection()){
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1,customer.getId());
+			ps.executeUpdate();
+			
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
-}
+
