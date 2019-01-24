@@ -6,11 +6,11 @@
  *
  */
 module javafx11 {
-	requires javafx.controls;
-	requires javafx.fxml;
+	requires transitive javafx.controls;
+	requires transitive javafx.fxml;
 	requires transitive javafx.graphics;
-	requires java.sql;
-	requires javafx.base;
+	requires transitive java.sql;
+	requires transitive javafx.base;
 	exports application.View;
 	exports application;
 	exports application.Model;
