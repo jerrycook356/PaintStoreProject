@@ -45,23 +45,23 @@ public class CustomerWindowController {
 	@FXML
 	public Button cancelButton;
 	@FXML
-	public TableView customerTableView;
+	public TableView<Customer> customerTableView;
 	@FXML
-	public TableColumn idColumn;
+	public TableColumn<Customer,Integer>idColumn;
 	@FXML
-	public TableColumn nameColumn;
+	public TableColumn<Customer,String>nameColumn;
 	@FXML
-	public TableColumn streetColumn;
+	public TableColumn<Customer,String>streetColumn;
 	@FXML
-	public TableColumn cityColumn;
+	public TableColumn<Customer,String>cityColumn;
 	@FXML
-	public TableColumn zipColumn;
+	public TableColumn<Customer,Integer> zipColumn;
 	@FXML
-	public TableColumn phoneNumberColumn;
+	public TableColumn<Customer,Long> phoneNumberColumn;
 	@FXML
-	public TableColumn numberOfSalesColumn;
+	public TableColumn<Customer, Integer>numberOfSalesColumn;
 	@FXML
-	public TableColumn stateColumn;
+	public TableColumn<Customer,String> stateColumn;
 	@FXML 
 	public Button removeCustomerButton;
 	@FXML 

@@ -62,20 +62,20 @@ public class InventoryManagementController {
 	
 	
 	@FXML
-	public TableView itemTableView;
+	public TableView<Item> itemTableView;
 	
 	@FXML
-	public TableColumn idColumn;
+	public TableColumn<Item,Integer> idColumn;
 	@FXML
-	public TableColumn descriptionColumn;
+	public TableColumn<Item,String> descriptionColumn;
 	@FXML
-	public TableColumn priceColumn;
+	public TableColumn<Item,Double> priceColumn;
 	@FXML
-	public TableColumn quantityColumn;
+	public TableColumn<Item,Integer> quantityColumn;
 	@FXML
-	public TableColumn minQuantityColumn;
+	public TableColumn<Item,Integer> minQuantityColumn;
 	@FXML
-	public TableColumn maxQuantityColumn;
+	public TableColumn<Item, Integer>maxQuantityColumn;
 	
 	
 	ObservableList<Item> items = FXCollections.observableArrayList();
