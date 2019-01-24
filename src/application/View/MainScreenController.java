@@ -1,6 +1,7 @@
 package application.View;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 import application.Model.Customer;
 import application.Model.DatabaseHelper;
@@ -15,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -83,13 +86,18 @@ public class MainScreenController {
 	
 	//inside customer cart section
 	@FXML
+	public Label customerCartIdLabel;
+	@FXML
 	public Label customerCartDescriptionLabel;
 	@FXML 
 	public Label customerCartPriceLabel;
 	@FXML
 	public Button customerCartAddButton;
+	
 	@FXML
-	public Button customerCartClearButton;
+	public Spinner<Integer> amountSpinner;
+	Item addItem = null;
+	
 	
 	//inside total section
 	@FXML
@@ -107,9 +115,17 @@ public class MainScreenController {
 	@FXML
 	public Button totalCancelButton;
 	
+	int totalNumberOfItems = 0;
+	int numberToSubtractFromDatabase=0;
+	double subTotal = 0.0;
+	double discountAmount = 0.0;
+	double tax = 0.0;
+	double total = 0.0;
+	
 	//review section
 	@FXML
 	public Button reviewRemoveButton;
+	ObservableList<Item> reviewItems = FXCollections.observableArrayList();
 	
 	
 	
@@ -164,6 +180,7 @@ public class MainScreenController {
 		customerResultIdLabel.setText(Integer.toString(customer.getId()));
 		customerResultNameLabel.setText(customer.getName());
 		customerResultNumberSalesLabel.setText(Integer.toString(customer.getNumberOfSales()));
+		
 	}
 	
 	public void goToCustomer(Event event) throws IOException {
@@ -191,5 +208,52 @@ public class MainScreenController {
 		
 		window.setScene(scene);
 		window.show();
+	}
+	
+	public void onTableClicked() {
+		Item item = itemTableView.getSelectionModel().getSelectedItem();
+		customerCartIdLabel.setText(Integer.toString(item.getId()));
+		customerCartDescriptionLabel.setText(item.getDescription());
+		customerCartPriceLabel.setText(Double.toString(item.getPrice()));
+		int max = item.getQuantity();
+		SpinnerValueFactory<Integer>quantityValueFactory = 
+				new SpinnerValueFactory.IntegerSpinnerValueFactory(0,max,0);
+		this.amountSpinner.setValueFactory(quantityValueFactory);
+		addItem = item;
+		
+	}
+	public void customerCartAddButtonPressed() {
+		itemTableView.getSelectionModel().clearSelection();
+		reviewItems.add(addItem);
+		totalNumberOfItems += (int)amountSpinner.getValue();
+		numberToSubtractFromDatabase = (int)amountSpinner.getValue();
+		subTotal += (addItem.getPrice() * (int)amountSpinner.getValue());
+		//discount needs to determined here from customer data
+		tax = subTotal* 0.06;
+		total = (subTotal + tax);
+		
+		//set labels in total section
+		totalNumberOfItemsLabel.setText(Integer.toString(totalNumberOfItems));
+		DecimalFormat dec = new DecimalFormat("#0.00");
+		
+		totalSubTotalLabel.setText(dec.format(subTotal));
+		//set discount label later
+		totalTaxLabel.setText(dec.format(tax));
+		totalTotalLabel.setText(dec.format(total));
+		//subtract quantity from quantity in itemTable for the added item.
+		dh.subtractItems(addItem.getId(),numberToSubtractFromDatabase);
+		refreshTable();
+		
+		clearLabelsCustomerCart();
+		
+		
+		
+	}
+	
+	public void clearLabelsCustomerCart() {
+		customerCartIdLabel.setText("");
+		customerCartDescriptionLabel.setText("");
+		customerCartPriceLabel.setText("");
+		amountSpinner.getValueFactory().setValue(0);
 	}
 }

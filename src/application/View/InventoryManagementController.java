@@ -199,18 +199,23 @@ public void refreshTable() {
 		 }
 	 }
 	 refreshTable();
+	 clearFields();
  }
  public void cancelButtonPressed() {
-	 itemIdTextField.clear();
-	itemDescriptionTextField.clear();
-	itemPriceTextField.clear();
-	quantityTextField.clear();
-	minQuantityTextField.clear();
-	maxQuantityTextField.clear();
+	clearFields();
 	if(isUpdate == true) {
 		isUpdate = false;
 	}
 	 
+ }
+ 
+ public void clearFields() {
+	 itemIdTextField.clear();
+		itemDescriptionTextField.clear();
+		itemPriceTextField.clear();
+		quantityTextField.clear();
+		minQuantityTextField.clear();
+		maxQuantityTextField.clear();
  }
 
 }

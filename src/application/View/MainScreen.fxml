@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -223,10 +224,12 @@
                                                       <Label layoutX="14.0" layoutY="56.0" text="Description:" textFill="#e20909" />
                                                       <Label layoutX="14.0" layoutY="88.0" text="Price: $" textFill="#f00808" />
                                                       <Label layoutX="14.0" layoutY="119.0" text="Quantity:" textFill="#ea0404" />
-                                                      <Button fx:id="customerCartAddButton" layoutX="177.0" layoutY="154.0" mnemonicParsing="false" text="Add" />
+                                                      <Button fx:id="customerCartAddButton" layoutX="177.0" layoutY="154.0" mnemonicParsing="false" onMouseClicked="#customerCartAddButtonPressed" text="Add" />
                                                       <Button fx:id="customerCartClearButton" layoutX="258.0" layoutY="154.0" mnemonicParsing="false" text="Clear" />
                                                       <Label fx:id="customerCartDescriptionLabel" layoutX="96.0" layoutY="56.0" prefHeight="18.0" prefWidth="270.0" />
                                                       <Label fx:id="customerCartPriceLabel" layoutX="96.0" layoutY="88.0" prefHeight="18.0" prefWidth="63.0" />
+                                                      <Spinner fx:id="amountSpinner" layoutX="159.0" layoutY="115.0" />
+                                                      <Label fx:id="customerCartIdLabel" layoutX="96.0" layoutY="23.0" prefHeight="18.0" prefWidth="70.0" />
                                                    </children>
                                                 </AnchorPane>
                                             </items>
@@ -255,7 +258,7 @@
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <TableView fx:id="itemTableView" layoutX="148.0" layoutY="36.0" prefHeight="452.8" prefWidth="766.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <TableView fx:id="itemTableView" layoutX="148.0" layoutY="36.0" onMouseClicked="#onTableClicked" prefHeight="452.8" prefWidth="766.4" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
                                   <TableColumn fx:id="itemIdTableColumn" prefWidth="75.0" text="ID:" />
                                   <TableColumn fx:id="itemDescriptionColumn" prefWidth="517.6001205444336" text="Description:" />

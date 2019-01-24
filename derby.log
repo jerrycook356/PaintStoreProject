@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Thu Jan 24 11:45:40 EST 2019:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0168-80c0-b734-00000f0ad788 
+Thu Jan 24 15:13:22 EST 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-0168-817e-df19-00000f0adcb0 
 on database directory C:\Users\jerry\eclipse-workspace\PaintStoreProject\paintshopdatabase with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@5f2050f6 
 Loaded from file:/C:/Apache/db-derby-10.14.2.0-bin/lib/derby.jar
 java.vendor=Oracle Corporation
@@ -12,5 +12,5 @@ os.version=10.0
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
 ----------------------------------------------------------------
-Thu Jan 24 11:46:03 EST 2019:
-Shutting down instance a816c00e-0168-80c0-b734-00000f0ad788 on database directory C:\Users\jerry\eclipse-workspace\PaintStoreProject\paintshopdatabase with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@5f2050f6 
+Thu Jan 24 15:15:03 EST 2019:
+Shutting down instance a816c00e-0168-817e-df19-00000f0adcb0 on database directory C:\Users\jerry\eclipse-workspace\PaintStoreProject\paintshopdatabase with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@5f2050f6 

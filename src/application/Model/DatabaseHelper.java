@@ -291,6 +291,18 @@ public class DatabaseHelper {
 		}
 	}
 	
+	public void subtractItems(int id, int numberToSubtract) {
+		String sql = "UPDATE ITEMTABLE SET QUANTITY = QUANTITY - ? WHERE ID = ?";
+		try(Connection con = ch.getConnection()){
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, numberToSubtract);
+			ps.setInt(2, id);
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	}
 
