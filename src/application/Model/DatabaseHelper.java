@@ -5,8 +5,7 @@ import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import application.Model.Item;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -33,6 +32,7 @@ public class DatabaseHelper {
 			{
 				createItemTable();
 			}
+			rs.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -176,7 +176,8 @@ public class DatabaseHelper {
 	      				rs.getString("STREET"),rs.getString("CITY"),rs.getString("STATE"),
 	      				rs.getInt("ZIP"),rs.getLong("PHONENUMBER"),rs.getInt("NUMBEROFSALES"));	
 			}
-			
+			ps.close();
+			rs.close();
 			return customer;
 			
 			
@@ -187,7 +188,7 @@ public class DatabaseHelper {
 	}
 	
 	
-	public void addCustomer(Customer customer)
+	public void addCustomer(Customer customer) 
 	{
 		
 		
@@ -205,7 +206,7 @@ public class DatabaseHelper {
 			ps.setInt(7,customer.getNumberOfSales());
 			
 			ps.executeUpdate();
-			
+			ps.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -217,11 +218,80 @@ public class DatabaseHelper {
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1,customer.getId());
 			ps.executeUpdate();
+			ps.close();
 			
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}
 		}
+	public void updateCustomer(Customer customer)
+	{
+		String sql = "UPDATE CUSTOMERTABLE SET NAME = ?, STREET = ?, CITY = ?, STATE = ?, ZIP = ?, PHONENUMBER = ? WHERE ID = ?";
+		try(Connection con = ch.getConnection()){
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1, customer.getName());
+			ps.setString(2,customer.getStreet());
+			ps.setString(3,customer.getCity());
+			ps.setString(4,customer.getState());
+			ps.setInt(5,customer.getZip());
+			ps.setLong(6,customer.getPhoneNumber());
+			ps.setInt(7,customer.getId());
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void removeItem(Item item) {
+		String sql = "DELETE FROM ITEMTABLE WHERE ID = ?";
+		try(Connection con = ch.getConnection()){
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1,item.getId());
+			ps.executeUpdate();
+			ps.close();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+			
+		}
+	public void addItem(Item item) throws SQLException {
+		String sql = "INSERT INTO ITEMTABLE (ID,DESCRIPTION,PRICE,QUANTITY,MINQUANTITY,MAXQUANTITY) VALUES(?,?,?,?,?,?)";
+		try(Connection con = ch.getConnection()){
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1,item.getId());
+			ps.setString(2, item.getDescription());
+			ps.setDouble(3,item.getPrice());
+			ps.setInt(4,item.getQuantity());
+			ps.setInt(5,item.getMinQuantity());
+			ps.setInt(6,item.getMaxQuantity());
+			ps.executeUpdate();
+			ps.close();
+		}
+	}
+	public void updateItem(Item item)
+	{
+		String sql = "UPDATE ITEMTABLE SET DESCRIPTION = ?, PRICE = ?, QUANTITY = ?, MINQUANTITY = ?, MAXQUANTITY = ? WHERE ID = ?";
+		try(Connection con = ch.getConnection()){
+			
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setString(1,item.getDescription());
+			ps.setDouble(2,item.getPrice());
+			ps.setInt(3,item.getQuantity());
+			ps.setInt(4,item.getMinQuantity());
+			ps.setInt(5,item.getMaxQuantity());
+			ps.setInt(6,item.getId());
+			ps.executeUpdate();
+			ps.close();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	}
 
 

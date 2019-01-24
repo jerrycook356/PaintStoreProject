@@ -56,8 +56,8 @@
                               <TextField fx:id="quantityTextField" layoutX="11.0" layoutY="195.0" prefHeight="26.0" prefWidth="278.0" promptText="How Many In Stock" />
                               <TextField fx:id="minQuantityTextField" layoutX="11.0" layoutY="243.0" prefHeight="26.0" prefWidth="278.0" promptText="MIn Amount To Stock" />
                               <TextField fx:id="maxQuantityTextField" layoutX="11.0" layoutY="296.0" prefHeight="26.0" prefWidth="278.0" promptText="Max Amout To Stock" />
-                              <Button fx:id="addItemButton" layoutX="36.0" layoutY="364.0" mnemonicParsing="false" text="Add Item" />
-                              <Button fx:id="cancelButton" layoutX="187.0" layoutY="364.0" mnemonicParsing="false" text="Cancel" />
+                              <Button fx:id="addItemButton" layoutX="36.0" layoutY="364.0" mnemonicParsing="false" onMousePressed="#addItemButtonPressed" text="Add Item" />
+                              <Button fx:id="cancelButton" layoutX="187.0" layoutY="364.0" mnemonicParsing="false" onMousePressed="#cancelButtonPressed" text="Cancel" />
                               <TextField fx:id="itemPriceTextField" layoutX="14.0" layoutY="142.0" prefHeight="26.0" prefWidth="278.0" promptText="Enter Item Price" />
                            </children></AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
@@ -77,7 +77,11 @@
                                             </columns>
                                           </TableView>
                                        </children></AnchorPane>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <Button fx:id="modifyItemButton" layoutX="61.0" layoutY="14.0" mnemonicParsing="false" onMousePressed="#modifyItemButtonPressed" text="Modify Item" />
+                                          <Button layoutX="183.0" layoutY="14.0" mnemonicParsing="false" text="Remove Item" textFill="#f20202" />
+                                       </children></AnchorPane>
                                 </items>
                               </SplitPane>
                            </children>

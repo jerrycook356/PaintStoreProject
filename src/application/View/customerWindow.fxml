@@ -83,7 +83,8 @@
                                     </AnchorPane>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                        <children>
-                                          <Button fx:id="removeCustomerButton" layoutX="167.0" layoutY="11.0" mnemonicParsing="false" onAction="#removeCustomerButtonPressed" text="Remove Customer !" textFill="#ea0a0a" />
+                                          <Button fx:id="removeCustomerButton" layoutX="217.0" layoutY="19.0" mnemonicParsing="false" onAction="#removeCustomerButtonPressed" text="Remove Customer !" textFill="#ea0a0a" />
+                                          <Button fx:id="modifyCustomerButton" layoutX="48.0" layoutY="19.0" mnemonicParsing="false" onMousePressed="#modifyCustomerButtonPressed" text="Update Customer" />
                                        </children>
                                     </AnchorPane>
                                 </items>

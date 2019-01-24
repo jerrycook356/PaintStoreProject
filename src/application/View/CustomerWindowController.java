@@ -2,6 +2,7 @@ package application.View;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
 
 import application.Model.Customer;
@@ -63,9 +64,15 @@ public class CustomerWindowController {
 	public TableColumn stateColumn;
 	@FXML 
 	public Button removeCustomerButton;
+	@FXML 
+	public Button modifyCustomerButton;
+	
 	
 	ObservableList<Customer> customers = FXCollections.observableArrayList();
 	DatabaseHelper dh = new DatabaseHelper();
+	Boolean isUpdate = false;
+	int customerUpdateId;
+	int customerUpdateSales;
 	
 	@FXML
 	public void initialize() {
@@ -107,9 +114,27 @@ public class CustomerWindowController {
 		Customer customer = new Customer(nameTextField.getText(),streetTextField.getText(),
 				cityTextField.getText(),stateTextField.getText(),Integer.parseInt(zipTextField.getText()),
 				Long.parseLong(phoneNumberTextField.getText()),0);
-		
+		if(isUpdate == true)
+		{
+			Customer customer2 = new Customer(customerUpdateId,nameTextField.getText(),streetTextField.getText(),
+					cityTextField.getText(),stateTextField.getText(),Integer.parseInt(zipTextField.getText()),
+					Long.parseLong(phoneNumberTextField.getText()),customerUpdateSales);
+			dh.updateCustomer(customer2);
+			clearTextFields();
+			customerUpdateId = 0;
+			customerUpdateSales = 0;
+			isUpdate = false;
+		}
+		else {
 		dh.addCustomer(customer);
+		clearTextFields();	
+		}
+			
+		refreshTable();
 		
+	}
+	public void clearTextFields()
+	{
 		nameTextField.clear();
 		streetTextField.clear();
 		cityTextField.clear();
@@ -117,10 +142,7 @@ public class CustomerWindowController {
 		zipTextField.clear();
 		phoneNumberTextField.clear();
 		
-		refreshTable();
-		
 	}
-	
 	public void removeCustomerButtonPressed() {
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Delete Customer ?");
@@ -166,4 +188,28 @@ public void goToMainScreen(Event event) throws IOException {
 	window.show();
 
 	}
+
+public void modifyCustomerButtonPressed()
+{
+	
+	Alert alert = new Alert(AlertType.CONFIRMATION);
+	alert.setTitle("Mofidy Customer ?");
+	alert.setHeaderText("Modify Customer ?");
+	alert.setContentText("Would you like to modify customter?");
+	Optional<ButtonType>result = alert.showAndWait();
+	if(result.get() == ButtonType.OK) {
+		Customer customer =(Customer) customerTableView.getSelectionModel().getSelectedItem();
+		
+		nameTextField.setText(customer.getName());
+		streetTextField.setText(customer.getStreet());
+		cityTextField.setText(customer.getCity());
+		stateTextField.setText(customer.getState());
+		zipTextField.setText(Integer.toString(customer.getZip()));
+		phoneNumberTextField.setText(Long.toString(customer.getPhoneNumber()));
+		isUpdate = true;
+		customerUpdateId = customer.getId();
+		customerUpdateSales = customer.getNumberOfSales();
+	}
+	
+}
 }
